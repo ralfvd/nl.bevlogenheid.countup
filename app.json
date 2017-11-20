@@ -1,0 +1,284 @@
+{
+    "id": "nl.bevlogenheid.countup",
+    "name": {
+        "en": "CountUp"
+    },
+    "version": "1.1.1",
+    "compatibility": ">=1.0.0",
+    "description" : {
+	    "en" : "Use CountUp timers to control your flows",
+      "nl" : "tbd"
+    },
+    "author": {
+        "name": "Ralf van Dooren",
+        "email": "ralfvd@gmail.com"
+    },
+    "contributing": {
+        "donate": {
+            "paypal": {
+                "username": "ralfvd"
+            }
+        }
+    },
+"images": {
+    "large": "./assets/images/large.jpg",
+    "small": "./assets/images/small.jpg"
+  },
+  "category": [ "tools" ],
+  "dependencies": { },
+  "flow": {
+    "triggers": [
+       {
+          "id": "countup_started",
+          "title": {
+	           "en": "Timer has started",
+	          "nl": "Zandloper is gestart"
+	         },
+	        "token": [
+            {
+	             "name": "variable",
+	              "title": {
+                  "en": "Name timer",
+		              "nl": "Naam zandloper"
+              }
+            }
+          ],
+          "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "countup timer name",
+	            "nl": "Zandloper naam"
+            }
+          }
+        ]
+      },
+      {
+         "id": "countup_stopped",
+         "title": {
+            "en": "Timer has stopped",
+           "nl": "Zandloper is gestopt"
+          },
+         "token": [
+           {
+              "name": "variable",
+               "title": {
+                 "en": "Name timer",
+                 "nl": "Naam zandloper"
+             }
+           }
+         ],
+         "args": [
+         {
+           "name": "variable",
+           "type": "autocomplete",
+           "placeholder": {
+             "en": "countup timer name",
+             "nl": "Zandloper naam"
+           }
+         }
+       ]
+     },
+     {
+        "id": "countup_timer_changed",
+        "title": {
+           "en": "Timer value has changed",
+          "nl": "Zandloper waarde is veranderd"
+         },
+        "tokens": [
+          {
+             "name": "variable",
+              "title": {
+                "en": "name timer",
+                "nl": "naam zandloper"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "value",
+              "nl": "waarde"
+            }
+          }
+        ],
+        "args": [
+        {
+          "name": "variable",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "countup timer name",
+            "nl": "Zandloper naam"
+          }
+        }
+      ]
+    }
+       ],
+       "conditions": [
+        {
+        "id": "timer_running",
+        "title": {
+          "en": "Timer !{{not|}} running",
+          "nl": "Zandloper loopt !{{niet|}}"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name",
+         	  "nl": "naam"
+           }
+          }
+        ]
+      },
+      {
+        "id": "timer_matches_number",
+        "title": {
+          "en": "!{{CountUp is exact|CountUp is not exactly}}",
+          "nl": "!{{Zandloper is precies|Zandloper is ongelijk aan}}"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "countup name",
+              "nl": "Zandloper naam"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "value",
+              "nl": "waarde"
+            }
+          }
+        ]
+      }
+
+       ],
+       "actions": [
+       {
+	        "id": "set_countup_timer",
+	        "title": {
+	           "en": "Start countup timer",
+             "nl": "Draai zandloper om"
+           },
+           "args":
+           [
+             {
+               "name": "variable",
+               "type": "autocomplete",
+               "placeholder": {
+                 "en": "name",
+	               "nl": "naam"
+               }
+             },
+             {
+               "name": "value",
+               "type": "text",
+               "placeholder":
+	             {
+                 "en": "seconds",
+	              "nl": "seconden"
+               }
+             }
+	        ]
+      },
+      {
+        "id": "set_random_countup_timer",
+        "title": {
+          "en": "start random countup",
+          "nl": "Zandloper met willekeurige eindtijd"
+        },
+          "args":
+          [
+           {
+             "name": "variable",
+             "type": "autocomplete",
+             "placeholder": {
+               "en": "name",
+               "nl": "naam"
+             }
+           },
+           {
+             "name": "valuemin",
+             "type": "text",
+             "placeholder":
+         {
+               "en": "min. seconds",
+               "nl": "min. seconden"
+             }
+           },
+           {
+             "name": "valuemax",
+             "type": "text",
+             "placeholder":
+         {
+               "en": "max. seconds",
+               "nl": "max. seconden"
+             }
+           }
+      ]
+         },
+         {
+  	        "id": "adjust__timer",
+  	        "title": {
+  	           "en": "Adjust countup timer",
+               "nl": "Pas zandloper aan"
+             },
+             "args":
+             [
+               {
+                 "name": "variable",
+                 "type": "autocomplete",
+                 "placeholder": {
+                   "en": "name",
+  	               "nl": "naam"
+                 }
+               },
+               {
+                 "name": "value",
+                 "type": "text",
+                 "placeholder":
+  	             {
+                   "en": "seconds",
+  	              "nl": "seconden"
+                 }
+               }
+  	        ]
+        },
+        {
+	 "id": "stop_countup_timer",
+        "title":
+          {
+           "en": "Stop countup timer"
+          },
+         "args":
+         [
+           {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder":
+              {
+              "en": "name",
+	             "nl": "naam"
+              }
+           }
+         ]
+       },
+       {
+       "id": "stop_all_countup_timers",
+            "title":
+              {
+               "en": "Stop all countup timers",
+               "nl": "Stop alle zandlopers"
+              }
+
+               }
+      ]
+   }
+}
